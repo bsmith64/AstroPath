@@ -17,6 +17,7 @@ red = (255,0,0)
 green = (0,255,0)
 blue = (0,0,255)
 
+
 # # # # # # # # # - - CLASSES - - # # # # # # # # #
 
 class Block(pygame.sprite.Sprite):
@@ -62,15 +63,19 @@ class Bullet(pygame.sprite.Sprite):
 
 
 
-
+# Initialize Pygame - - - - - - - -
 pygame.init()
 
+# Set up screen dimensions - - - - - - - -
 screen_width = 800
 screen_height = 600
 screen = pygame.display.set_mode([screen_width, screen_height])
 
+# Game title display
+pygame.display.set_caption('Astro Path')
 
 
+# Create SPRITES LIST - - - - - - - - -
 all_sprites_list = pygame.sprite.Group()
 block_list = pygame.sprite.Group()
 bullet_list = pygame.sprite.Group()
@@ -78,7 +83,7 @@ astroid_trash = pygame.sprite.Group()
 
 
 
-# Create the player - - - - - - - - - -
+# Create the PLAYER - - - - - - - - - -
 player = Player()
 all_sprites_list.add(player)
 
@@ -93,12 +98,24 @@ y_change = 400
 player.rect.x = x_change
 player.rect.y = y_change
 
+points = 0
+
+# Blit SCORE to the screen - - - - - - - - - -
+smallFont = pygame.font.SysFont('Charcoal', 25)
+mediumFont = pygame.font.SysFont('Charcoal', 30)
+largeFont = pygame.font.SysFont('Charcoal', 50)
+
+def score(points):
+        text = largeFont.render(str(points), True, green)
+        screen.blit(text, [750,510])
+
+
 
 # # # # # # # # # # - - MAIN GAME LOOP - - # # # # # # # # #
 
 def gameLoop():
 
-        score = 0
+        points = 0
         x_change = 0
         y_change = 0
         movement = 11
@@ -110,7 +127,7 @@ def gameLoop():
 
         def genRoid():
                 
-                print ('GENERATION!')
+                print ('GENERATION!!!')
                 block.rect.x = random.randrange(screen_width * 0.8)
                 block.rect.y = -200
                 
@@ -187,11 +204,12 @@ def gameLoop():
                         for block in block_hit_list:
                                 bullet_list.remove(bullet)
                                 all_sprites_list.remove(bullet)
-                                score += 1
+                                points += 1
                                 block_list.remove(block)
                                 astroid_trash.add(block)
                                 
-                                print (score)
+                                print ('points: ', points)
+
                         
 
                         if bullet.rect.y < -10:
@@ -253,11 +271,18 @@ def gameLoop():
 
 
                 screen.fill(black)
+                score(points)
+                
+                gui = pygame.image.load('GUI_test.png')
+                screen.blit(gui, [0,0])
+                
                 all_sprites_list.draw(screen)
 
                 pygame.display.update()
 
                 clock.tick(30)
+
+             
 
 gameLoop()
 pygame.quit()
