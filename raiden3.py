@@ -1,3 +1,13 @@
+
+
+# _ _ _ _ _ A S T R O _ P A T H _ _ _ _ _  #
+# - - - - - - - - - - - - - - - - - - - - -#
+
+
+# Written by Blake Smith
+# This is a Pygame experiemnt and a learn as I go type of thing.
+# AstroPath is modeled after the arcade game Raiden
+
 import pygame
 import random
 
