@@ -5,8 +5,8 @@
 
 
 # Written by Blake Smith
-# This is a Pygame experiemnt and a learn as I go type of thing.
-# AstroPath is modeled after the arcade game Raiden
+# This is a Pygame experiment and a learn as I go type of thing.
+# AstroPath is modeled after the arcade game Raiden.
 
 import pygame
 import random
