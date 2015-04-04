@@ -71,6 +71,12 @@ screen_width = 800
 screen_height = 600
 screen = pygame.display.set_mode([screen_width, screen_height])
 
+"""# Gui added // CHECK IF WORKS FURTHER UP
+#gui = pygame.image.load('GUI_test.png').convert()"""
+
+# Load BACKGROUND image
+stars_background = pygame.image.load('stars_test.png').convert()
+
 # Game title display
 pygame.display.set_caption('Astro Path')
 
@@ -105,9 +111,10 @@ smallFont = pygame.font.SysFont('Charcoal', 25)
 mediumFont = pygame.font.SysFont('Charcoal', 30)
 largeFont = pygame.font.SysFont('Charcoal', 50)
 
+# Score Function
 def score(points):
-        text = largeFont.render(str(points), True, green)
-        screen.blit(text, [750,510])
+        text = mediumFont.render('score: ' + str(points), True, green)
+        screen.blit(text, [15,15])
 
 
 
@@ -208,7 +215,6 @@ def gameLoop():
                                 block_list.remove(block)
                                 astroid_trash.add(block)
                                 
-                                print ('points: ', points)
 
                         
 
@@ -271,14 +277,20 @@ def gameLoop():
 
 
                 screen.fill(black)
+
+                
+                screen.blit(stars_background,[0,0])
+                #screen.blit(gui, [0,0])
+
+                
                 score(points)
                 
-                gui = pygame.image.load('GUI_test.png')
-                screen.blit(gui, [0,0])
                 
                 all_sprites_list.draw(screen)
 
+                
                 pygame.display.update()
+
 
                 clock.tick(30)
 
